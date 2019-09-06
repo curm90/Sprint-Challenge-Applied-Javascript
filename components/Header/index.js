@@ -18,4 +18,8 @@ function Header() {
   header.classList.add('header');
   date.classList.add('date');
   temperature.classList.add('temp');
+
+  date.textContent = 'MARCH 28, 2019';
+  title.textContent = 'Lambda Times';
+  temperature.textContent = '98°';
 }
