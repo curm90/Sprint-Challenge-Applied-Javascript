@@ -38,4 +38,15 @@ function cardComponent(articleData) {
   headline.textContent = articleData.headline;
   img.src = articleData.authorPhoto;
   author.textContent = `By: ${articleData.authorName}`;
+
+  // Append all elements to the DOM
+  document.querySelector('.cards-container').appendChild(card);
+  card.appendChild(headline);
+  card.appendChild(authorContainer);
+  authorContainer.appendChild(imgContainer);
+  imgContainer.appendChild(img);
+  authorContainer.appendChild(author);
+
+  // Return component
+  return card;
 }
