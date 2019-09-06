@@ -50,3 +50,22 @@ function cardComponent(articleData) {
   // Return component
   return card;
 }
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then(res => {
+    // Get access to articles object
+    const articlesObj = res.data.articles;
+    // Get access to articles arrays
+    const articlesArr = Object.values(articlesObj);
+
+    // Loop over each array and pass each key from 
+    // Each object through the card component function
+    articlesArr.forEach(article => {
+      for (let i = 0; i < article.length; i++) {
+        cardComponent(article[i]);
+      }
+    })
+  })
+  .catch(err => {
+    console.log(err);
+  })
