@@ -51,6 +51,7 @@ function cardComponent(articleData) {
   return card;
 }
 
+// Make API call to display all card components to the DOM
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then(res => {
     // Get access to articles object
