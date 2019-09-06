@@ -14,4 +14,8 @@ function Header() {
   const date = document.createElement('span');
   const title = document.createElement('h1');
   const temperature = document.createElement('span');
+
+  header.classList.add('header');
+  date.classList.add('date');
+  temperature.classList.add('temp');
 }
