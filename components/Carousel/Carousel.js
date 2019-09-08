@@ -1,19 +1,71 @@
-/* If You've gotten this far, you're on your own! Although we will give you some hints:
-    1. You will need to write a function that creates the carousel component, you will find the HTML below.
-    2. You will need to grab a reference to all of the images
-    3. Create a current index
-    4. Those buttons are gonna need some click handlers.
-    5. Think of how you would animate this component. Make the cards slide in and out, or fade. It's up to you!
-    6. Have fun!
-*/
+function carouselComponent() {
+  // Create all elements needed for carousel component
+  const carousel = document.createElement('div');
+  const leftButton = document.createElement('div');
+  const rightButton = document.createElement('div');
 
-/* HTML:
-  <div class="carousel">
-    <div class="left-button"> < </div>
-    <img src="./assets/carousel/mountains.jpeg" />
-    <img src="./assets/carousel/computer.jpeg" />
-    <img src="./assets/carousel/trees.jpeg" />
-    <img src="./assets/carousel/turntable.jpeg" />
-    <div class="right-button"> > </div>
-  </div>
-*/
+  // Store image sources in an array
+  const imageSources = [
+    './assets/carousel/computer.jpeg',
+    './assets/carousel/mountains.jpeg',
+    './assets/carousel/trees.jpeg',
+    './assets/carousel/turntable.jpeg'
+  ];
+
+  // Loop over the sources array and create an image element
+  // For each source, and set the source attribute
+  // Append to carousel
+  const imageArr = imageSources.map(source => {
+    const image = document.createElement('img');
+    image.src = source;
+    
+    carousel.appendChild(image);
+
+    return image;
+  })
+  
+  // Add classes to elements
+  carousel.classList.add('carousel');
+  leftButton.classList.add('left-button');
+  rightButton.classList.add('right-button');
+
+  // Add text content to buttons
+  leftButton.textContent = '<';
+  rightButton.textContent = '>';
+
+  // Append elements to the DOM
+  document.querySelector('.carousel-container').appendChild(carousel);
+  carousel.appendChild(leftButton);
+  carousel.appendChild(rightButton);
+
+  // Define a current index and show the first image on page
+  let index = 0;
+  imageArr[index].style.display = 'flex';
+  index++;
+
+  // Add event listener to buttons
+  rightButton.addEventListener('click', moveImgRight);
+  leftButton.addEventListener('click', moveImgLeft);
+
+  // Add button functionality
+  function moveImgRight() {
+    let absoluteIndex = Math.abs(index);
+    index++;
+
+    imageArr.forEach(img => img.style.display = "none");
+    imageArr[absoluteIndex % 4].style.display = "flex";
+  }
+
+  function moveImgLeft() {
+    let absoluteIndex = Math.abs(index);
+    index--;
+    imageArr.forEach(img => img.style.display = "none");
+    imageArr[absoluteIndex % 4].style.display = "flex";
+  }
+
+  // Return component
+  return carousel;
+}
+
+carouselComponent();
+
